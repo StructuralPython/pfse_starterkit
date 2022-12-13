@@ -10,5 +10,33 @@ license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: Apache Software License"]
 dynamic = ["version", "description"]
 
+dependencies = [
+    "streamlit",
+    "numpy",
+    "pandas",
+    "openpyxl",
+    "lxml",
+    "sympy",
+    "shapely",
+    "vtk",
+    "matplotlib",
+    "plotly",
+    "sectionproperties",
+    "concreteproperties",
+    "handcalcs",
+    "forallpeople",
+    "pytest",
+    "ipytest",
+    "rich",
+    "tqdm",
+    "papermodels",
+    "xlwings",
+    "black",
+    "jupyterlab",
+    "IPython",
+    "ipywidgets",
+    "jupyterlab-katex",
+]
+
 [project.urls]
 Home = "https://github.com/connorferster/pfse_starterkit"
