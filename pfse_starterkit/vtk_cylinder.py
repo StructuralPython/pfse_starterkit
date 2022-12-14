@@ -5,6 +5,7 @@
 
 # noinspection PyUnresolvedReferences
 import vtkmodules.vtkInteractionStyle
+
 # noinspection PyUnresolvedReferences
 import vtkmodules.vtkRenderingOpenGL2
 from vtkmodules.vtkCommonColor import vtkNamedColors
@@ -14,7 +15,7 @@ from vtkmodules.vtkRenderingCore import (
     vtkPolyDataMapper,
     vtkRenderWindow,
     vtkRenderWindowInteractor,
-    vtkRenderer
+    vtkRenderer,
 )
 
 
@@ -58,7 +59,7 @@ def main():
     ren.AddActor(cylinderActor)
     ren.SetBackground(colors.GetColor3d("BkgColor"))
     renWin.SetSize(300, 300)
-    renWin.SetWindowName('CylinderExample')
+    renWin.SetWindowName("CylinderExample")
 
     # This allows the interactor to initalize itself. It has to be
     # called before an event loop.
@@ -72,5 +73,6 @@ def main():
 
     # Start the event loop.
     iren.Start()
+
 
 main()

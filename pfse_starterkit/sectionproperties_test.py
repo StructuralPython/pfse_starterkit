@@ -25,6 +25,7 @@ from rich.text import Text
 
 console = Console()
 
+
 def main():
     # %%
     # Create a 50 diameter circle discretised by 64 points
@@ -36,10 +37,11 @@ def main():
 
     section = Section(geometry)
 
+
 try:
     main()
 except Exception as err:
     for arg in err.args:
         err_arg = Text("\n" + arg)
-        err_arg.stylize('bold red')
+        err_arg.stylize("bold red")
         console.print(err_arg)

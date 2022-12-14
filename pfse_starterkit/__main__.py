@@ -61,7 +61,9 @@ def check_installs():
     else:
         verified = Markdown("# PfSE installation verified")
         verified.style = "green"
-        close_windows = Markdown("## You can now close any windows that have opened as a result of the test.")
+        close_windows = Markdown(
+            "## You can now close any windows that have opened as a result of the test."
+        )
         close_windows.style = "green"
         console.print(verified)
         console.print(close_windows)
@@ -70,11 +72,12 @@ def check_installs():
 def check_streamlit():
     st_file = pathlib.Path(__file__).parent / "streamlit_test.py"
     try:
-        proc = subprocess.Popen(["streamlit", "run", str(st_file)], stdout=subprocess.PIPE)
+        proc = subprocess.Popen(
+            ["streamlit", "run", str(st_file)], stdout=subprocess.PIPE
+        )
         time.sleep(4)
         proc.kill()
         # proc.kill()
-
 
     except:
         err_msg = Text("Streamlit did not run properly.")
@@ -82,9 +85,10 @@ def check_streamlit():
         return err_msg
 
 
-def check_vtk():   
+def check_vtk():
     try:
         import vtkmodules.vtkInteractionStyle
+
         # noinspection PyUnresolvedReferences
         import vtkmodules.vtkRenderingOpenGL2
         from vtkmodules.vtkCommonColor import vtkNamedColors
@@ -94,7 +98,7 @@ def check_vtk():
             vtkPolyDataMapper,
             vtkRenderWindow,
             vtkRenderWindowInteractor,
-            vtkRenderer
+            vtkRenderer,
         )
 
         colors = vtkNamedColors()
@@ -136,7 +140,7 @@ def check_vtk():
         ren.AddActor(cylinderActor)
         ren.SetBackground(colors.GetColor3d("BkgColor"))
         renWin.SetSize(300, 300)
-        renWin.SetWindowName('CylinderExample')
+        renWin.SetWindowName("CylinderExample")
 
         # This allows the interactor to initalize itself. It has to be
         # called before an event loop.
@@ -147,13 +151,14 @@ def check_vtk():
         ren.ResetCamera()
         ren.GetActiveCamera().Zoom(1.5)
         renWin.Render()
-        
+
     except Exception as err:
         err_msgs = Text("\nvtk example did not run properly:\n")
         for err_arg in err.args:
             err_msgs.append("\t" + err_arg + "\n")
-        err_msgs.stylize('bold red')
+        err_msgs.stylize("bold red")
         return err_msgs
+
 
 def check_numpy():
     try:
@@ -162,7 +167,7 @@ def check_numpy():
         err_msgs = Text("\nnumpy did not import properly:\n")
         for err_arg in err.args:
             err_msgs.append("\t" + err_arg + "\n")
-        err_msgs.stylize('bold green')
+        err_msgs.stylize("bold green")
         return err_msgs
 
 
@@ -173,7 +178,7 @@ def check_shapely():
         err_msgs = Text("\nshapely did not import properly:\n")
         for err_arg in err.args:
             err_msgs.append("\t" + err_arg + "\n")
-        err_msgs.stylize('bold cyan')
+        err_msgs.stylize("bold cyan")
         return err_msgs
 
 
@@ -181,23 +186,25 @@ def check_sectionproperties():
     try:
         import sectionproperties.pre.library.primitive_sections as sections
         from sectionproperties.analysis.section import Section
+
         geometry = sections.circular_section(d=50, n=64)
         geometry.create_mesh(mesh_sizes=[2.5])
     except Exception as err:
         err_msgs = Text("\nsectionproperties example did not run properly:\n")
         for err_arg in err.args:
             err_msgs.append("\t" + err_arg + "\n")
-        err_msgs.stylize('bold cyan')
+        err_msgs.stylize("bold cyan")
         return err_msgs
 
 
 def check_openpyxl():
     try:
         from openpyxl import Workbook
+
         wb = Workbook()
-        dest_filename = 'empty_book.xlsx'
+        dest_filename = "empty_book.xlsx"
         saved_file = pathlib.Path.home() / dest_filename
-        wb.save(filename = saved_file)
+        wb.save(filename=saved_file)
         if not saved_file.exists():
             raise Exception(f"No file found: {saved_file}")
         else:
@@ -206,7 +213,7 @@ def check_openpyxl():
         err_msgs = Text("\nopenpyxl example did not run properly:\n")
         for err_arg in err.args:
             err_msgs.append("\t" + err_arg + "\n")
-        err_msgs.stylize('bold yellow')
+        err_msgs.stylize("bold yellow")
         return err_msgs
 
 
@@ -216,12 +223,14 @@ def install_extra():
         proc = subprocess.Popen(
             ["conda", "install", "-c", "conda-forge", "libstdcxx-ng"],
             stdin=subprocess.PIPE,
-            text=True)
+            text=True,
+        )
         proc.communicate("y\n")
     else:
         msg = Text("No additional installations necessary. Ok.")
-        msg.stylize('bold green')
+        msg.stylize("bold green")
         console.print(msg)
+
 
 if __name__ == "__main__":
     install_extra()
