@@ -36,6 +36,8 @@ dependencies = [
     "IPython",
     "ipywidgets",
     "jupyterlab-katex",
+    "typer",
+    "magicgui[pyside2]"
 ]
 
 [project.urls]
