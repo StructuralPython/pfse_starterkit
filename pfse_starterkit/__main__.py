@@ -130,7 +130,7 @@ def check_vtk():
         # We'll zoom in a little by accessing the camera and invoking a "Zoom"
         # method on it.
         ren.ResetCamera()
-        ren.GetActiveCamera().Zooms(1.5)
+        ren.GetActiveCamera().Zoom(1.5)
         renWin.Render()
         
     except Exception as err:
@@ -142,7 +142,7 @@ def check_vtk():
 
 def check_numpy():
     try:
-        import numpys as np
+        import numpy as np
     except Exception as err:
         err_msgs = Text("\nnumpy did not import properly:\n")
         for err_arg in err.args:
@@ -166,7 +166,7 @@ def check_sectionproperties():
     try:
         import sectionproperties.pre.library.primitive_sections as sections
         from sectionproperties.analysis.section import Section
-        geometry = sections.circular_section(d=0, n=64)
+        geometry = sections.circular_section(d=50, n=64)
         geometry.create_mesh(mesh_sizes=[2.5])
     except Exception as err:
         err_msgs = Text("\nsectionproperties example did not run properly:\n")
@@ -179,9 +179,14 @@ def check_sectionproperties():
 def check_openpyxl():
     try:
         from openpyxl import Workbook
-        wb = Workbooks()
+        wb = Workbook()
         dest_filename = 'empty_book.xlsx'
         wb.save(filename = dest_filename)
+        saved_file = pathlib.Path(__file__).parents[1] / dest_filename
+        if not saved_file.exists():
+            raise Exception(f"No file found: {saved_file}")
+        else:
+            saved_file.unlink()
     except Exception as err:
         err_msgs = Text("\nopenpyxl example did not run properly:\n")
         for err_arg in err.args:
@@ -189,6 +194,19 @@ def check_openpyxl():
         err_msgs.stylize('bold yellow')
         return err_msgs
 
+
+def install_extra():
+    if platform.system() == "Linux":
+        # conda install that package for vtk on linux if platform is linux
+        proc = subprocess.Popen(
+            ["conda", "install", "-c", "conda-forge", "libstdcxx-ng"],
+            stdin=subprocess.PIPE,
+            text=True)
+        proc.communicate("y\n")
+    else:
+        msg = Text("No additional installations necessary. Ok.")
+        msg.stylize('bold green')
+        console.print(msg)
 
 if __name__ == "__main__":
     check_installs()
