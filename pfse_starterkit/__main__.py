@@ -58,8 +58,14 @@ def check_installs():
         for msg in msgs:
             if msg is not None:
                 console.print(msg)
+        notify = Markdown("# Inconsistencies encoutered")
+        notify.style = "red"
+        instructions = Markdown("### Please use Ctrl-Shift-C to copy the above error messages and email them to connor@structuralpython.com")
+        instructions.style = "red"
+        console.print(notify)
+        console.print(instructions)
     else:
-        verified = Markdown("# PfSE installation verified")
+        verified = Markdown("# PfSE installation seems ok")
         verified.style = "green"
         close_windows = Markdown(
             "## You can now close any windows that have opened as a result of the test."
