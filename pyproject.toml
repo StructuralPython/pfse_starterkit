@@ -40,3 +40,6 @@ dependencies = [
 
 [project.urls]
 Home = "https://github.com/connorferster/pfse_starterkit"
+
+[project.scripts]
+pfse_verify = "pfse_starterkit.__main__:check_installs"

@@ -17,7 +17,7 @@ from rich.console import Console
 from rich.live import Live
 from rich.panel import Panel
 from rich.progress import Progress, track
-from rich.table import Table, Column
+from rich.markdown import Markdown
 from rich.text import Text
 
 console = Console()
@@ -28,7 +28,17 @@ def check_installs():
     Runs various mini-scripts to validate that certain packages
     are installed correctly. Offers suggestions for remediation if not.
     """
-    progress_table = Table.grid()
+    header = Markdown("# Python for Structural Engineers ('PfSE')")
+    addl_installs = Markdown("## Installing additional package for Linux...")
+    addl_installs.style = "yellow"
+    console.print(header)
+    console.print(addl_installs)
+
+    install_extra()
+    validating = Markdown("## Validating installed packages...")
+    validating.style = "yellow"
+    console.print(validating)
+
     funcs = [
         check_streamlit,
         check_vtk,
@@ -49,8 +59,13 @@ def check_installs():
             if msg is not None:
                 console.print(msg)
     else:
-        console.print("[green]PFSE starter installation verified")
-        console.print("[green]You can now close any windows that have opened as a result.")
+        verified = Markdown("# PfSE installation verified")
+        verified.style = "green"
+        close_windows = Markdown("## You can now close any windows that have opened as a result of the test.")
+        close_windows.style = "green"
+        console.print(verified)
+        console.print(close_windows)
+
 
 def check_streamlit():
     st_file = pathlib.Path(__file__).parent / "streamlit_test.py"
@@ -181,8 +196,8 @@ def check_openpyxl():
         from openpyxl import Workbook
         wb = Workbook()
         dest_filename = 'empty_book.xlsx'
-        wb.save(filename = dest_filename)
-        saved_file = pathlib.Path(__file__).parents[1] / dest_filename
+        saved_file = pathlib.Path.home() / dest_filename
+        wb.save(filename = saved_file)
         if not saved_file.exists():
             raise Exception(f"No file found: {saved_file}")
         else:
@@ -209,4 +224,5 @@ def install_extra():
         console.print(msg)
 
 if __name__ == "__main__":
+    install_extra()
     check_installs()
