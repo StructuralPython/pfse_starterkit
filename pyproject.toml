@@ -37,6 +37,7 @@ dependencies = [
     "jupyterlab",
     "IPython",
     "ipywidgets",
+    "ipykernel",
     "jupyterlab-katex",
     "typer",
     "magicgui[pyside2]"
