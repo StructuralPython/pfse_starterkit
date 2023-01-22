@@ -23,6 +23,7 @@ dependencies = [
     "plotly",
     "sectionproperties",
     "concreteproperties",
+    "PyNiteFEA",
     "handcalcs",
     "forallpeople",
     "pytest",
