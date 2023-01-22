@@ -24,6 +24,7 @@ dependencies = [
     "sectionproperties",
     "concreteproperties",
     "PyNiteFEA",
+    "scipy",
     "handcalcs",
     "forallpeople",
     "pytest",
