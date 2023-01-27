@@ -60,7 +60,9 @@ def check_installs():
                 console.print(msg)
         notify = Markdown("# Inconsistencies encoutered")
         notify.style = "red"
-        instructions = Markdown("### Please use Ctrl-Shift-C to copy the above error messages and email them to connor@structuralpython.com")
+        instructions = Markdown(
+            "### Please use Ctrl-Shift-C to copy the above error messages and email them to connor@structuralpython.com"
+        )
         instructions.style = "red"
         console.print(notify)
         console.print(instructions)
