@@ -83,9 +83,9 @@ def check_streamlit():
         proc = subprocess.Popen(
             ["streamlit", "run", str(st_file)], stdout=subprocess.PIPE
         )
+        proc.communicate("\n")
         time.sleep(4)
         proc.kill()
-        # proc.kill()
 
     except:
         err_msg = Text("Streamlit did not run properly.")
