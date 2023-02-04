@@ -16,6 +16,7 @@ This installs the following packages:
 * sectionproperties
 * concreteproperties
 * PyNiteFEA
+* pycba
 * scipy
 * handcalcs
 * forallpeople
