@@ -41,7 +41,8 @@ dependencies = [
     "ipykernel",
     "jupyterlab-katex",
     "typer",
-    "magicgui[pyside2]"
+    "magicgui[pyside2]",
+    "flit"
 ]
 
 [project.urls]

@@ -34,3 +34,4 @@ This installs the following packages:
 * jupyterlab-katex
 * typer
 * magicgui[pyside2]
+* flit
