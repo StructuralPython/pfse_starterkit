@@ -32,6 +32,8 @@ This installs the following packages:
 * ipywidgets
 * ipykernel
 * jupyterlab-katex
+* nbconvert
+* pyperclip
 * typer
 * magicgui[pyside2]
 * flit

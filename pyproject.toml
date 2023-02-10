@@ -40,6 +40,8 @@ dependencies = [
     "ipywidgets",
     "ipykernel",
     "jupyterlab-katex",
+    "nbconvert",
+    "pyperclip",
     "typer",
     "magicgui[pyside2]",
     "flit"
