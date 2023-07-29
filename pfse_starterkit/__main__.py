@@ -35,6 +35,9 @@ def check_installs():
     console.print(addl_installs)
 
     install_extra()
+    ipyk_install = Markdown("## Installing pfse Jupyter kernel...")
+    ipyk_install.style = "yellow"
+    install_pfse_kernel()
     validating = Markdown("## Validating installed packages...")
     validating.style = "yellow"
     console.print(validating)
@@ -81,14 +84,17 @@ def check_streamlit():
     st_file = pathlib.Path(__file__).parent / "streamlit_test.py"
     try:
         proc = subprocess.Popen(
-            ["streamlit", "run", str(st_file)], stdout=subprocess.PIPE
+            ["streamlit", "run", str(st_file)],
+            stdout=subprocess.PIPE
         )
         # proc.communicate("\n")
         time.sleep(4)
         proc.kill()
 
-    except ValueError:
+    except Exception as err:
         err_msg = Text("Streamlit did not run properly.")
+        for err_arg in err.args:
+            err_msg.append("\t" + err_arg + "\n")
         err_msg.stylize("bold magenta")
         return err_msg
 
@@ -177,11 +183,22 @@ def check_numpy():
             err_msgs.append("\t" + err_arg + "\n")
         err_msgs.stylize("bold green")
         return err_msgs
+    
+
+def check_pandas():
+    try:
+        import pandas as pd
+    except Exception as err:
+        err_msgs = Text("\nnumpy did not import properly:\n")
+        for err_arg in err.args:
+            err_msgs.append("\t" + err_arg + "\n")
+        err_msgs.stylize("bold green")
+        return err_msgs
 
 
 def check_shapely():
     try:
-        from shapely.geometry import Polygon
+        from shapely import Polygon
     except Exception as err:
         err_msgs = Text("\nshapely did not import properly:\n")
         for err_arg in err.args:
@@ -240,6 +257,17 @@ def install_extra():
         console.print(msg)
 
 
+def install_pfse_kernel():
+    proc = subprocess.Popen(
+        ["python", "-m", "ipykernel", "install", "--user", "--name", "pfse", "--display-name", "Python 3.10 (pfse)"],
+        stdout=subprocess.PIPE,
+        text=True,
+    )
+    msg = Text("PfSE Jupyter Kernel Installed Successfully")
+    msg.stylize("bold green")
+    console.print(msg)
+
 if __name__ == "__main__":
     install_extra()
+    install_pfse_kernel()
     check_installs()
