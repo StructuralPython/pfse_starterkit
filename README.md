@@ -32,6 +32,7 @@ This installs the following packages:
 * ipywidgets
 * ipykernel
 * jupyterlab-katex
+* jupyterlab-mathjax3 (as an option)
 * nbconvert
 * pyperclip
 * typer
