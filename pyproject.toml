@@ -24,14 +24,14 @@ dependencies = [
     "kaleido",
     "sectionproperties",
     "concreteproperties",
-    "pycba>=0.2.0",
-    "PyNiteFEA>=0.0.78",
+    "pycba>=0.4.0",
+    "PyNiteFEA>=0.0.87",
     "anastruct",
     "scipy",
     "handcalcs",
+    "more-itertools",
     "forallpeople",
     "pytest",
-    "ipytest",
     "rich",
     "tqdm",
     "papermodels",
@@ -47,7 +47,8 @@ dependencies = [
     "pyperclip",
     "typer",
     "magicgui[pyside2]",
-    "flit"
+    "flit",
+    "python-docx"
 ]
 
 [project.urls]
