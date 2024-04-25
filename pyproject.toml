@@ -26,7 +26,6 @@ dependencies = [
     "concreteproperties",
     "pycba>=0.4.0",
     "PyNiteFEA>=0.0.87",
-    "anastruct",
     "scipy",
     "handcalcs",
     "more-itertools",
@@ -36,7 +35,6 @@ dependencies = [
     "tqdm",
     "papermodels",
     "xlwings",
-    "black",
     "jupyterlab",
     "IPython",
     "ipywidgets",
@@ -46,9 +44,12 @@ dependencies = [
     "nbconvert",
     "pyperclip",
     "typer",
-    "magicgui[pyside2]",
     "flit",
-    "python-docx"
+    "python-docx",
+    "constable",
+    "ruff",
+    "black",
+    "isort",
 ]
 
 [project.urls]
