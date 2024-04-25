@@ -259,7 +259,7 @@ def install_extra():
 
 def install_pfse_kernel():
     proc = subprocess.Popen(
-        ["python", "-m", "ipykernel", "install", "--user", "--name", "pfse", "--display-name", "Python 3.10 (pfse)"],
+        ["python", "-m", "ipykernel", "install", "--user", "--name", "pfse", "--display-name", "Python 3 (pfse)"],
         stdout=subprocess.PIPE,
         text=True,
     )
